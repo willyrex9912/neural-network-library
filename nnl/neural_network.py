@@ -61,6 +61,7 @@ class NeuralNetwork:
             self.biases[i] += np.sum(delta_layer, axis=0) * learning_rate
 
     def train(self, inputs, outputs, learning_rate=0.2, times=1000):
+        print("##### TRAIN START #####")
         for time in range(times):
             for input_vector, output_vector in zip(inputs, outputs):
                 self.forward_propagation(input_vector)
@@ -69,6 +70,7 @@ class NeuralNetwork:
             if time % 100 == 0:
                 loss = np.mean(np.square(outputs - self.forward_propagation(inputs)))
                 print(f"Time {time} / {times} - Loss: {loss}")
+        print("##### TRAIN END #####")
 
     def predict(self, inputs):
         predictions = []
