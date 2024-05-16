@@ -20,39 +20,19 @@ class NeuralNetwork:
 
     def initialize_weights(self):
         layers = [self.num_inputs] + self.hidden_layers + [self.num_outputs]
-        # print("Layers")
-        # print(layers)
         for i in range(len(layers) - 1):
-            # print("Matrix:")
             weight_matrix = np.random.rand(layers[i], layers[i+1]) - 0.5
-            # print(weight_matrix)
             bias_vector = np.random.rand(layers[i+1]) - 0.5
-            # print("Vector")
-            # print(bias_vector)
             self.weights.append(weight_matrix)
             self.biases.append(bias_vector)
-        # print("Final:")
-        # print("Final weights:")
-        # print(self.weights)
-        # print("Final biases:")
-        # print(self.biases)
 
     def forward_propagation(self, inputs):
         self.layer_inputs = [inputs]
         self.layer_outputs = []
 
         for i in range(len(self.weights)):
-            # print("New calculation forward propagation:")
-            # print("Inputs")
-            # print(self.layer_inputs[-1])
-            # print("Weights")
-            # print(self.weights[i])
-            # print("Biases")
-            # print(self.biases[i])
             net_input = np.dot(self.layer_inputs[-1], self.weights[i]) + self.biases[i]
-            # print("Net input")
-            # print(net_input)
-            if i == len(self.weights) - 1: # Output layer
+            if i == len(self.weights) - 1:
                 activation = self.activation_function.activation(net_input, self.activation_output)
             else:
                 activation = self.activation_function.activation(net_input, self.activation_hidden)
@@ -74,7 +54,6 @@ class NeuralNetwork:
         deltas.reverse()
 
         for i in range(len(self.weights)):
-            # Asegurar que los vectores de entrada y deltas sean matrices 2D
             input_layer = np.atleast_2d(self.layer_inputs[i])
             delta_layer = np.atleast_2d(deltas[i])
 

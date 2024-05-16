@@ -1,6 +1,5 @@
 # This is a sample Python script.
 from nnl.neural_network import NeuralNetwork
-import numpy as np
 
 
 # Press Shift+F10 to execute it or replace it with your code.
