@@ -38,6 +38,8 @@ class ActivationFunction:
             return self.tanh(x)
         elif func == 'identity':
             return self.identity(x)
+        elif func == 'step':
+            return self.step(x)
         else:
             return self.sigmoid(x)
 

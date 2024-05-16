@@ -40,17 +40,29 @@ if __name__ == '__main__':
         neurons_num = int(input("Neurons number on hidden layer " + str(hl+1) + ": "))
         hidden_layers.append(neurons_num)
 
-    nn = NeuralNetwork(num_inputs, num_outputs, hidden_layers, 'tanh', 'sigmoid')
-    nn.train(inputs, outputs, 0.1, 10000)
+    print("Available functions for hidden layers: sigmoid, tanh")
+    activation_hidden = input("Type function for hidden layers: ")
+    if activation_hidden == "":
+        activation_hidden = "sigmoid"
+    print("Available functions for output layer: identity, step")
+    activation_output = input("Type function for output layer: ")
+    if activation_output == "":
+        activation_output = "identity"
+
+    learning_rate = float(input("Learning rate: "))
+    training_times = int(input("Times for training: "))
+
+    nn = NeuralNetwork(num_inputs, num_outputs, hidden_layers, activation_hidden, activation_output)
+    nn.train(inputs, outputs, learning_rate, training_times)
 
     counter = 0
     while counter < 100:
         input_values = []
-        for i in range(2):
+        for i in range(num_inputs):
             value = float(input(f"Type characteristic value {i + 1}: "))
             input_values.append(value)
         predicted_output = nn.predict([input_values])
-        print("The output is:", round(predicted_output[0][0]))
+        print("The output is:", predicted_output)
         counter += 1
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
