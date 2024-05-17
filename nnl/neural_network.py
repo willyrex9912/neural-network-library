@@ -68,8 +68,8 @@ class NeuralNetwork:
                 self.backward_propagation(output_vector, learning_rate)
 
             if time % 100 == 0:
-                loss = np.mean(np.square(outputs - self.forward_propagation(inputs)))
-                print(f"Time {time} / {times} - Loss: {loss}")
+                mse = np.mean(np.square(outputs - self.forward_propagation(inputs)))
+                print(f"Time {time} / {times} - MSE: {mse}")
         print("##### TRAIN END #####")
 
     def predict(self, inputs):
